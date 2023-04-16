@@ -1,0 +1,42 @@
+@startuml dns-resolve
+title DNS Resolve
+
+actor User as USR order 1
+participant Client as CL order 2
+participant "Local DNS Server" as LDNS order 3
+participant "Root DNS Server" as RDNS order 4
+participant "'.ch' DNS Server" as CH order 5
+participant "'admin.ch' DNS Server" as ADMINCH order 6
+participant "'www.admin.ch' Web Server" as WWW order 7
+
+skinparam SequenceMessageAlignment center
+
+USR -> CL: Open Web Browser
+USR -> CL: Type www.admin.ch in address bar
+
+CL -> CL: Query **www.admin.ch** to hosts file
+CL -[#red]>x CL: **www.admin.ch** is not in hosts file
+
+CL -> LDNS: Query **www.admin.ch**
+LDNS -[#red]>x LDNS: **www.admin.ch** is not on local DNS server
+
+LDNS -> RDNS: Query **www.admin.ch**
+RDNS -> RDNS: **www.admin.ch** is not on root DNS server
+RDNS -> LDNS: **.ch** DNS server knows more, query that
+
+LDNS -> CH: Query **www.admin.ch**
+CH -[#red]>x CH: **www.admin.ch** is not on **.ch** DNS server
+CH -> LDNS: **admin.ch** [ 162.23.130.190 ] DNS server knows more, query that
+
+LDNS -> ADMINCH: Query **www.admin.ch**
+ADMINCH -[#green]> ADMINCH: Query **www.admin.ch**
+ADMINCH -> LDNS: Host **www** is 18.165.183.71
+
+LDNS -> CL: Host **www.admin.ch** is 18.165.183.71
+
+CL -> WWW: Query web page
+WWW -> CL: Return web page
+
+CL -> USR: Display web page
+
+@enduml
