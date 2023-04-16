@@ -1,0 +1,32 @@
+@startuml TLS-Handshake
+
+title **TLS Handshake**
+
+participant Client as c
+participant Server as s
+
+skinparam sequenceMessageAlignment center
+
+scale 1000 width
+
+c -[#blue]> s: SYN
+
+s -[#blue]> c: SYN ACK
+
+c -[#blue]> s: ACK
+c -[#f5cb42]> s: ClientHello
+
+s -[#f5cb42]> c: ServerHello\nCertificate\nServerHelloDone
+
+c -[#f5cb42]> s: ClientKeyExchange\nChangeCipherSpec\nFinished
+
+s -[#f5cb42]> c: ChangeCipherSpec\nFinished
+
+legend
+Protocols used:
+
+blue => TCP [50ms]
+yellow => TLS [110ms]
+end legend
+
+@enduml
