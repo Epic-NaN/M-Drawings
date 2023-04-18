@@ -1,6 +1,8 @@
 @startuml dns-resolve
 title DNS Resolve
 
+skinparam SequenceMessageAlignment center
+
 actor User as USR order 1
 participant Client as CL order 2
 participant "Local DNS Server" as LDNS order 3
@@ -8,8 +10,6 @@ participant "Root DNS Server" as RDNS order 4
 participant "'.ch' DNS Server" as CH order 5
 participant "'admin.ch' DNS Server" as ADMINCH order 6
 participant "'www.admin.ch' Web Server" as WWW order 7
-
-skinparam SequenceMessageAlignment center
 
 USR -> CL: Open Web Browser
 USR -> CL: Type www.admin.ch in address bar
