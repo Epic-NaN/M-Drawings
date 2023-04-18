@@ -1,0 +1,17 @@
+@startuml forward-reverse-lookup
+title Forward- and Reverse-Lookup
+
+scale 200
+
+object Hostname {
+  Nice for humans
+}
+
+object "IP-Address" as IP {
+  Nice for computers
+}
+
+Hostname -> IP: Forward-Lookup
+IP -> Hostname: Reverse-Lookup
+
+@enduml
