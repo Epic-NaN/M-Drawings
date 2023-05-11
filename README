@@ -1,0 +1,29 @@
++--------------------------+
+|  What is this repo for?  |
++--------------------------+
+
+I started this repo recently to put my PlantUML drawings for various modules in. The folder structure is as follows:
+.
+├── M<NR>
+│   └── <TOPIC>
+│       └── <DRAWING>
+└─── M<NR>
+    └── <TOPIC>
+        └─── <DRAWING>
+etc...
+
++----------------+
+|  Placeholders  |
++----------------+
+
+<NR>          ==> [DIRECTORY]  Number of the module, as described in the apprenticeship documentation for "Informatik Systemtechnik EFZ"
+<TOPIC>       ==> [DIRECTORY]  The topic of the drawings in the directory
+<DRAWING>     ==> [FILE]  The source files for the drawings. Only raw-text formats are supported (as of 2023-05-11, only PlantUML)
+
+
++-------------------------------+
+|  Final words for this README  |
++-------------------------------+
+
+I do not care if anyone believes this document isn't written like a README should be. It is for me, not you, I just publish it on GHub for my own convenience
+
