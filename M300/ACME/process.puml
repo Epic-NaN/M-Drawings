@@ -1,0 +1,50 @@
+@startuml process
+title "__**Process**__"
+
+/'
+  author: arian
+  date: 2023-06-15
+
+  displays how ACME works
+'/
+
+skinparam {
+  SequenceMessageAlignment center
+  NoteBackgroundColor #DarkGreen
+  NoteFontColor #White
+}
+
+scale 200
+
+participant "Let's Encrypt" as LE order 1
+participant "Service System" as SS order 2
+'database "Global DNS (1.1.1.1)" as GDNS order 3
+database "Local DNS (192.168.200.10)" as LDNS order 4
+
+autonumber
+
+SS -> LE: Give me a certificate
+LE -> SS: Add a ""TXT"" record for <domain> with <string>
+
+|||
+
+SS -> LDNS: Create DNS record (<&arrow-right> using ""nsupdate"")
+
+|||
+
+LE -> LDNS: Query TXT records for <domain>
+LDNS -> LE: ""TXT <string>""
+
+note over LE: Validation correct
+
+LE -> SS: Certificate <&document>
+
+legend
+=Legend
+----
+- ""<domain>"" is a placeholder for the domain you want a cert for
+- ""<string>"" is a string of text //Let's Encrypt// wants you to put into the DNS. This is a random string
+end legend
+
+
+@enduml
